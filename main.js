@@ -1,10 +1,10 @@
 const quizNavbar = document.getElementById("quiz-navbar");
-const homeDiv = document.getElementById("home")
+const homeDiv = document.getElementById("home");
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const questionsAPI = document.getElementById("questions");
 const answerCards = document.getElementById("answer-cards");
-
+console.log(answerCards);
 let currentQuestion = 0;
 let score = 0;
 let questions = [];
@@ -22,54 +22,33 @@ const getInfo = async () => {
 };
 getInfo();
 
-
 const startQuiz = async (e) => {
- e.preventDefault()
+  e.preventDefault();
   try {
-    homeDiv.classList.add("d-none")
+    homeDiv.classList.add("d-none");
     const question = questions[currentQuestion];
     questionsAPI.innerText = question.question;
-    //pintar las respuestas en botones
-    console.log(question.answers);
-    Object.values(question.answers).forEach(answer => {
-      console.log(answer)
-    
-    })
-    // console.log(question);
-  } catch (error) {}
+    let correctAnswer = "";
+
+    Object.keys(question.correct_answers).forEach((answer) => {
+      if (question.correct_answers[answer] == "true") {
+        correctAnswer = answer.substring(0, 8);
+        console.log(correctAnswer);
+      }
+    });
+
+    Object.values(question.answers).forEach((answer) => {
+      if (answer !== null) {
+        const button = document.createElement("button");
+        button.innerText = answer;
+        answerCards.appendChild(button);
+      }
+
+    });
+    questionsAPI.appendChild(answerCards);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-function showQuestion(question) {
-  questionElement.innerText = question.question;
-  question.answers.forEach((answer) => {
-    const button = document.createElement("button");
-    button.innerText = answer.text;
-
-    if (answer.correct) {
-      button.dataset.correct = true;
-    }
-
-    answerButtonsElement.appendChild(button);
-  });
-}
-
-// questions.forEach((question) => {
-//     const questionsAPI = document.createElement("questions");
-//     questionsAPI.classList.add("questions");
-//     questionsAPI.textContent = question.question;
-//     const answersElement = document.createElement("ul");
-  
-//     answersElement.classList.add("answers");
-  
-//     question.answers.forEach((answer) => {
-//       const answerItem = document.createElement("li");
-//       answerItem.textContent = answer.answer;
-//       answersElement.appendChild(answerItem);
-  
-//       quizContainer.appendChild(questionElement);
-//       quizContainer.appendChild(answersElement);
-//     });
-//   });
-
-  
 startButton.addEventListener("click", startQuiz);
