@@ -4,7 +4,7 @@ const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const questionsAPI = document.getElementById("questions");
 const answerCards = document.getElementById("answer-cards");
-console.log(answerCards);
+
 let currentQuestion = 0;
 let score = 0;
 let questions = [];
@@ -33,7 +33,6 @@ const startQuiz = async (e) => {
     Object.keys(question.correct_answers).forEach((answer) => {
       if (question.correct_answers[answer] == "true") {
         correctAnswer = answer.substring(0, 8);
-        console.log(correctAnswer);
       }
     });
 
@@ -42,8 +41,14 @@ const startQuiz = async (e) => {
         const button = document.createElement("button");
         button.innerText = answer;
         answerCards.appendChild(button);
-      }
+        console.log("answer", answer);
+        console.log("correct answer", question.answers[correctAnswer]);
 
+        if (answer === question.answers[correctAnswer]) {
+          button.dataset.correctAnswer = true
+        }
+        
+      }
     });
     questionsAPI.appendChild(answerCards);
   } catch (error) {
