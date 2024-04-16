@@ -45,14 +45,21 @@ const startQuiz = async (e) => {
         console.log("correct answer", question.answers[correctAnswer]);
 
         if (answer === question.answers[correctAnswer]) {
-          button.dataset.correctAnswer = true
+          button.dataset.correctAnswer = true;
+        } else {
+        button.dataset.correctAnswer = false;
         }
-        
+        button.addEventListener("click",function() {
+          setStatusClass(button, button.dataset.correctAnswer === "true")
+        })
       }
     });
     questionsAPI.appendChild(answerCards);
   } catch (error) {
     console.error(error);
+  }
+  function setStatusClass(element, isCorrect) {
+    element.classList.add(isCorrect ? "correct" : "wrong");
   }
 };
 
