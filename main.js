@@ -50,7 +50,10 @@ const startQuiz = async (e) => {
         button.dataset.correctAnswer = false;
         }
         button.addEventListener("click",function() {
-          setStatusClass(button, button.dataset.correctAnswer === "true")
+          setStatusClass(button, button.dataset.correctAnswer === "true");
+          if (button.dataset.correctAnswer === "true") {
+            score++;
+          }
         })
       }
     });
@@ -62,5 +65,15 @@ const startQuiz = async (e) => {
     element.classList.add(isCorrect ? "correct" : "wrong");
   }
 };
+
+const showNextQuestion = () => {
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    const question = questions[currentQuestion];
+    questionsAPI.innerText = question.question;
+    // Limpia las respuestas anteriores
+    while (answerCards.firstChild) {
+      answerCards.removeChild(answerCards.firstChild);
+    }}}
 
 startButton.addEventListener("click", startQuiz);
