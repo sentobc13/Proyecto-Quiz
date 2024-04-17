@@ -34,6 +34,7 @@ const backGroundColorAns = (button) => {
     button.classList.add("wrong");
   }
 };
+
 const selectAnswer = () => {
   Array.from(answerCards.children).forEach((button) => {
     backGroundColorAns(button);
@@ -41,13 +42,19 @@ const selectAnswer = () => {
   });
 };
 
+
 const startQuiz = (e) => {
   e.preventDefault();
 
   homeDiv.classList.add("d-none");
   questionsAPI.classList.remove("d-none")
+  setNextQuestion()
 
-  const question = questions[currentQuestion];
+};
+
+
+const showQuestion = (question) => {
+  question = questions[currentQuestion];
   questionP.innerText = question.question;
   let correctAnswer = "";
   Object.keys(question.correct_answers).forEach((answer) => {
@@ -76,8 +83,18 @@ const startQuiz = (e) => {
   });
   questionsAPI.appendChild(answerCards);
 
+}
 
-};
+const setNextQuestion = () =>{
+  showQuestion(questions[currentQuestion]);
+}
+
+
+nextButton.addEventListener("click", () => {
+  currentQuestion++;
+  setNextQuestion();
+});
+
 
 const showNextQuestion = () => {
   currentQuestion++;
