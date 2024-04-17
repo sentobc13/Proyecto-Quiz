@@ -2,40 +2,40 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Quiz</title>
-    <link rel="shortcut icon"
-        href="https://img.freepik.com/vector-premium/cuestionario-adivinar-icono-redes-sociales-estilo-plano-preguntas-frecuentes-ilustracion-vectorial-sobre-fondo-aislado-concepto-negocio-signo-boton-ayuda_157943-12624.jpg"
-        type="image/x-icon">
-        <link rel="stylesheet" href="bootstrap.min (1).css">
-        <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto Quiz</title>
+  <link rel="shortcut icon"
+    href="https://img.freepik.com/vector-premium/cuestionario-adivinar-icono-redes-sociales-estilo-plano-preguntas-frecuentes-ilustracion-vectorial-sobre-fondo-aislado-concepto-negocio-signo-boton-ayuda_157943-12624.jpg"
+    type="image/x-icon">
+  <link rel="stylesheet" href="bootstrap.min (1).css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="quiz-navbar">
-        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Quiz!</a>
-            </div>
-    </div>
-
-     <div id="home">
-        <h3>Press start to begin with the quiz</h3>
-        <div>
-            <button type="button" class="btn btn-warning" id="start-btn">Start</button>
-        </div>
-    </div>
-    
-      <div id="questions">
-        <div id="answer-cards"></div>
-        <div>
-            <button type="button" class="btn btn-danger d-none"id="next-btn">Next</button>
-            </div>
+  <div id="quiz-navbar">
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Quiz!</a>
       </div>
+  </div>
+
+  <div id="home">
+    <h3>Press start to begin with the quiz</h3>
+    <div>
+      <button type="button" class="btn btn-warning" id="start-btn">Start</button>
+    </div>
+  </div>
+
+  <div id="questions" class="d-none">
+    <p id="question-p"></p>
+    <div id="answer-cards"></div>
+    <button type="button" class="btn btn-danger" id="next-btn">Next</button>
+  </div>
   
-      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="main.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>

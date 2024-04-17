@@ -3,7 +3,9 @@ const homeDiv = document.getElementById("home");
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const questionsAPI = document.getElementById("questions");
+const questionP = document.getElementById("question-p")
 const answerCards = document.getElementById("answer-cards");
+console.log(questionP);
 
 let currentQuestion = 0;
 let score = 0;
@@ -26,15 +28,15 @@ const backGroundColorAns = (button) => {
   button.setAttribute("disabled", "");
   if (button.dataset.correctAnswer == "true") {
     button.classList.add("correct");
+    score++;
   } else {
     button.classList.add("wrong");
   }
 };
-nextButton.style.display = 'block';
-
 const selectAnswer = (answerSelected) => {
   Array.from(answerCards.children).forEach((button) => {
     backGroundColorAns(button);
+    
   });
 };
 
@@ -42,9 +44,11 @@ const startQuiz = (e) => {
   e.preventDefault();
 
   homeDiv.classList.add("d-none");
+  questionsAPI.classList.remove("d-none")
+
   const question = questions[currentQuestion];
   console.log(question);
-  questionsAPI.innerText = question.question;
+  questionP.innerText = question.question;
   let correctAnswer = "";
   Object.keys(question.correct_answers).forEach((answer) => {
     if (question.correct_answers[answer] == "true") {
@@ -57,17 +61,16 @@ const startQuiz = (e) => {
       const button = document.createElement("button");
       button.innerText = answer;
       answerCards.appendChild(button);
-      console.log("answer", answer);
-      console.log("correct answer", question.answers[correctAnswer]);
+      
 
       if (answer === question.answers[correctAnswer]) {
         button.dataset.correctAnswer = true;
-        score++;
       } else {
         button.dataset.correctAnswer = false;
       }
       button.addEventListener("click", function () {
         selectAnswer(button)
+      
         // setStatusClass(button, button.dataset.correctAnswer === "true");
        
       });
