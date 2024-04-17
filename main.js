@@ -5,7 +5,7 @@ const nextButton = document.getElementById("next-btn");
 const questionsAPI = document.getElementById("questions");
 const questionP = document.getElementById("question-p")
 const answerCards = document.getElementById("answer-cards");
-console.log(questionP);
+
 
 let currentQuestion = 0;
 let score = 0;
@@ -18,6 +18,7 @@ const getInfo = async () => {
   try {
     const response = await axios.get(API_URL);
     questions = response.data;
+    console.log(questions);
   } catch (error) {
     console.error(error);
   }
@@ -33,7 +34,7 @@ const backGroundColorAns = (button) => {
     button.classList.add("wrong");
   }
 };
-const selectAnswer = (answerSelected) => {
+const selectAnswer = () => {
   Array.from(answerCards.children).forEach((button) => {
     backGroundColorAns(button);
     
@@ -47,7 +48,6 @@ const startQuiz = (e) => {
   questionsAPI.classList.remove("d-none")
 
   const question = questions[currentQuestion];
-  console.log(question);
   questionP.innerText = question.question;
   let correctAnswer = "";
   Object.keys(question.correct_answers).forEach((answer) => {
@@ -70,29 +70,23 @@ const startQuiz = (e) => {
       }
       button.addEventListener("click", function () {
         selectAnswer(button)
-      
-        // setStatusClass(button, button.dataset.correctAnswer === "true");
        
       });
     }
   });
   questionsAPI.appendChild(answerCards);
 
-  function setStatusClass(element, isCorrect) {
-    element.classList.add(isCorrect ? "correct" : "wrong");
-  }
+
 };
 
-// const showNextQuestion = () => {
-//   currentQuestion++;
-//   if (currentQuestion < questions.length) {
-//     const question = questions[currentQuestion];
-//     questionsAPI.innerText = question.question;
-//     // Limpia las respuestas anteriores
-//     while (answerCards.firstChild) {
-//       answerCards.removeChild(answerCards.firstChild);
-//     }
-//   }
-// };
+const showNextQuestion = () => {
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    const question = questions[currentQuestion];
+    questionsAPI.innerText = question.question;
+    
+    
+  }
+};
 
 startButton.addEventListener("click", startQuiz);
