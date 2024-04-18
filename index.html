@@ -14,13 +14,12 @@
 
 <body>
   <div id="quiz-navbar">
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-danger" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Quiz!</a>
+        <a class="navbar-brand" href="#">QUIZTOPIA</a>
       </div>
   </div>
-
-  <div class="card border-primary m-5 mt-5 justify-content-center d-flex" style="max-width: 60rem max-content 50rem">
+  <div class="card text-white bg-primary mb-5 m-5 mt-5 justify-content-center d-flex" style="max-width: 60rem max-content 50rem">
     <div class="card-header">QUIZ</div>
     <div class="card-body">
       <h4 id="card-title" class="card-title d-none">Question</h4>
@@ -40,8 +39,9 @@
   </div>
   <button type="button" class="btn btn-danger d-none mt-5 mb-5 m-5" id="next-btn">Next</button>
   <div id="score" class="d-none text-center display-4"></div>
-  <button id="restart-btn" class="btn btn-info mx-auto rounded-pill d-none">Restart Quiz</button>
+  <button id="restart-btn" class="btn btn-info mx-auto rounded-pill d-none mb-3">Restart Quiz</button>
 </div>
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="main.js"></script>
 </body>
