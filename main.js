@@ -6,6 +6,7 @@ const questionsAPI = document.getElementById("questions");
 const questionP = document.getElementById("question-p")
 const answerCards = document.getElementById("answer-cards");
 const scoreDiv = document.getElementById("score")
+const restartButton = document.getElementById("restart-btn")
 
 let currentQuestion = 0;
 let score = 0;
@@ -18,7 +19,6 @@ const getInfo = async () => {
   try {
     const response = await axios.get(API_URL);
     questions = response.data;
-    console.log(questions);
   } catch (error) {
     console.error(error);
   }
@@ -38,7 +38,6 @@ const selectAnswer = (e) => {
   const selectedBtnAnswer = e.target
   if (selectedBtnAnswer.dataset.correctAnswer == "true") {
     score++
-    console.log(score);
   }
   Array.from(answerCards.children).forEach((button) => {
     backGroundColorAns(button); 
@@ -49,7 +48,8 @@ const selectAnswer = (e) => {
   } else {
     questionsAPI.classList.add("d-none")
     scoreDiv.classList.remove("d-none");
-    scoreDiv.innerText = `Score: ${score}`;
+    scoreDiv.innerText = `Score: ${score}/10`;
+    restartButton.classList.remove("d-none")
   }
 };
 
@@ -62,6 +62,7 @@ const startQuiz = (e) => {
   questionsAPI.classList.remove("d-none")
   setNextQuestion()
   score = 0
+  currentQuestion = 0
 
 };
 
@@ -108,10 +109,15 @@ nextButton.addEventListener("click", () => {
 });
 
 
-// function resetState() {
-//   nextButton.classList.add("hide");
-//   answerButtonsElement.innerHTML=""
-// }
+const restartrQuiz = ()=> {
+  startButton.classList.remove("d-none");
+  homeDiv.classList.remove("d-none")
+  scoreDiv.classList.add("d-none")
+  restartButton.classList.add("d-none")
+
+
+}
 
 
 startButton.addEventListener("click", startQuiz);
+restartButton.addEventListener("click", restartrQuiz);
