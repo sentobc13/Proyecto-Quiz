@@ -5,7 +5,7 @@ const nextButton = document.getElementById("next-btn");
 const questionsAPI = document.getElementById("questions");
 const questionP = document.getElementById("question-p")
 const answerCards = document.getElementById("answer-cards");
-
+const scoreDiv = document.getElementById("score")
 
 let currentQuestion = 0;
 let score = 0;
@@ -29,17 +29,28 @@ const backGroundColorAns = (button) => {
   button.setAttribute("disabled", "");
   if (button.dataset.correctAnswer == "true") {
     button.classList.add("correct");
-    score++;
   } else {
     button.classList.add("wrong");
   }
 };
 
-const selectAnswer = () => {
+const selectAnswer = (e) => {
+  const selectedBtnAnswer = e.target
+  if (selectedBtnAnswer.dataset.correctAnswer == "true") {
+    score++
+    console.log(score);
+  }
   Array.from(answerCards.children).forEach((button) => {
-    backGroundColorAns(button);
-    
-  });
+    backGroundColorAns(button); 
+  })
+  if (currentQuestion +1< questions.length) {
+    nextButton.classList.remove("d-none");
+  
+  } else {
+    questionsAPI.classList.add("d-none")
+    scoreDiv.classList.remove("d-none");
+    scoreDiv.innerText = `Score: ${score}`;
+  }
 };
 
 
@@ -47,8 +58,10 @@ const startQuiz = (e) => {
   e.preventDefault();
 
   homeDiv.classList.add("d-none");
+  nextButton.classList.add("d-none");
   questionsAPI.classList.remove("d-none")
   setNextQuestion()
+  score = 0
 
 };
 
@@ -76,10 +89,7 @@ const showQuestion = (question) => {
       } else {
         button.dataset.correctAnswer = false;
       }
-      button.addEventListener("click", function () {
-        selectAnswer(button)
-       
-      });
+      button.addEventListener("click",selectAnswer) 
     }
   });
   questionsAPI.appendChild(answerCards);
@@ -87,6 +97,7 @@ const showQuestion = (question) => {
 }
 
 const setNextQuestion = () =>{
+  nextButton.classList.add("d-none");
   showQuestion(questions[currentQuestion]);
 }
 
@@ -97,21 +108,10 @@ nextButton.addEventListener("click", () => {
 });
 
 
-const showNextQuestion = () => {
-  currentQuestion++;
-  if (currentQuestion < questions.length) {
-    const question = questions[currentQuestion];
-    questionsAPI.innerText = question.question;
-    
-  
-  }
-};
-
-
-function resetState() {
-  nextButton.classList.add("hide");
-  answerButtonsElement.innerHTML=""
-}
+// function resetState() {
+//   nextButton.classList.add("hide");
+//   answerButtonsElement.innerHTML=""
+// }
 
 
 startButton.addEventListener("click", startQuiz);
