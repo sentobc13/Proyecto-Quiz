@@ -126,5 +126,3 @@ const restartrQuiz = ()=> {
 
 startButton.addEventListener("click", startQuiz);
 restartButton.addEventListener("click", restartrQuiz);
-
-console.log("prueba");
