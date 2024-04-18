@@ -33,4 +33,3 @@ Las contribuciones son bienvenidas. Si deseas mejorar el proyecto, puedes hacer 
 ## Autor
 
 Creado por [Sento Berlanga]
-
