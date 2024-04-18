@@ -20,21 +20,28 @@
       </div>
   </div>
 
-  <div id="home" class="container">
+  <div class="card border-primary m-5 mt-5 justify-content-center d-flex" style="max-width: 60rem max-content 50rem">
+    <div class="card-header">QUIZ</div>
+    <div class="card-body">
+      <h4 id="card-title" class="card-title d-none">Question</h4>
+  <div id="home">
     <h3>Press start to begin with the quiz</h3>
     <div>
-      <button type="button" class="btn btn-warning" id="start-btn">Start</button>
+      <button type="button" class="btn btn-warning d-flex justify-content-center" id="start-btn">Start</button>
     </div>
   </div>
+</div>
+
 
   <div id="questions" class="d-none container">
     <p id="question-p"></p>
     <div id="answer-cards"></div>
-    <button type="button" class="btn btn-danger" id="next-btn">Next</button>
+    
   </div>
+  <button type="button" class="btn btn-danger d-none mt-5 mb-5 m-5" id="next-btn">Next</button>
   <div id="score" class="d-none"></div>
-  <button id="restart-btn" class="btn btn-info d-none">Restart Quiz</button>
-
+  <button id="restart-btn" class="btn btn-info mx-auto rounded-pill d-none">Restart Quiz</button>
+</div>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="main.js"></script>
 </body>

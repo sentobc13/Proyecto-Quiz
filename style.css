@@ -5,4 +5,16 @@
   .wrong {
     background-color: rgb(255, 0, 0);
   }
+
+  #score{
+    width: 300px;
+  }
+
+  #next-btn{
+    display: flex;
+    width: 100px;
+    border-radius: 50px;
+
+  }
+
   

@@ -7,6 +7,7 @@ const questionP = document.getElementById("question-p")
 const answerCards = document.getElementById("answer-cards");
 const scoreDiv = document.getElementById("score")
 const restartButton = document.getElementById("restart-btn")
+const cardTitle = document.getElementById("card-title")
 
 let currentQuestion = 0;
 let score = 0;
@@ -28,9 +29,10 @@ getInfo();
 const backGroundColorAns = (button) => {
   button.setAttribute("disabled", "");
   if (button.dataset.correctAnswer == "true") {
-    button.classList.add("correct");
+    button.classList.add("btn", "btn-success")
   } else {
-    button.classList.add("wrong");
+    button.classList.add("btn", "btn-warning");
+
   }
 };
 
@@ -59,7 +61,8 @@ const startQuiz = (e) => {
 
   homeDiv.classList.add("d-none");
   nextButton.classList.add("d-none");
-  questionsAPI.classList.remove("d-none")
+  questionsAPI.classList.remove("d-none");
+  cardTitle.classList.remove("d-none")
   setNextQuestion()
   score = 0
   currentQuestion = 0
@@ -81,6 +84,7 @@ const showQuestion = (question) => {
   Object.values(question.answers).forEach((answer) => {
     if (answer !== null) {
       const button = document.createElement("button");
+      button.classList.add("btn","btn-secondary","m-2")
       button.innerText = answer;
       answerCards.appendChild(button);
       
@@ -114,6 +118,7 @@ const restartrQuiz = ()=> {
   homeDiv.classList.remove("d-none")
   scoreDiv.classList.add("d-none")
   restartButton.classList.add("d-none")
+  cardTitle.classList.add("d-none")
 
 
 }
