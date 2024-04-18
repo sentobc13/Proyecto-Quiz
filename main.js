@@ -54,6 +54,7 @@ const startQuiz = (e) => {
 
 
 const showQuestion = (question) => {
+  answerCards.innerHTML= "";
   question = questions[currentQuestion];
   questionP.innerText = question.question;
   let correctAnswer = "";
@@ -102,8 +103,15 @@ const showNextQuestion = () => {
     const question = questions[currentQuestion];
     questionsAPI.innerText = question.question;
     
-    
+  
   }
 };
+
+
+function resetState() {
+  nextButton.classList.add("hide");
+  answerButtonsElement.innerHTML=""
+}
+
 
 startButton.addEventListener("click", startQuiz);
